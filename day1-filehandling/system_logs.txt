@@ -1,0 +1,120 @@
+
+    Date: 21/1/2026, 11:25:43 am,
+            Platform: win32, 
+            CPU Model: AMD Ryzen 7 5800HS with Radeon Graphics        , 
+            Total Memory: 15.33407974243164 GB, 
+            Free Memory: 4.2013397216796875 GB, 
+            Uptime: 12.141310555555556 hours
+            
+    Date: 21/1/2026, 11:25:48 am,
+            Platform: win32, 
+            CPU Model: AMD Ryzen 7 5800HS with Radeon Graphics        , 
+            Total Memory: 15.33407974243164 GB, 
+            Free Memory: 4.1988067626953125 GB, 
+            Uptime: 12.142699444444444 hours
+            
+    Date: 21/1/2026, 11:25:53 am,
+            Platform: win32, 
+            CPU Model: AMD Ryzen 7 5800HS with Radeon Graphics        , 
+            Total Memory: 15.33407974243164 GB, 
+            Free Memory: 4.228294372558594 GB, 
+            Uptime: 12.144092777777777 hours
+            
+    Date: 21/1/2026, 11:25:58 am,
+            Platform: win32, 
+            CPU Model: AMD Ryzen 7 5800HS with Radeon Graphics        , 
+            Total Memory: 15.33407974243164 GB, 
+            Free Memory: 4.2382659912109375 GB, 
+            Uptime: 12.145481666666665 hours
+            
+    Date: 21/1/2026, 11:26:03 am,
+            Platform: win32, 
+            CPU Model: AMD Ryzen 7 5800HS with Radeon Graphics        , 
+            Total Memory: 15.33407974243164 GB, 
+            Free Memory: 4.2148895263671875 GB, 
+            Uptime: 12.146870555555555 hours
+            
+    Date: 21/1/2026, 11:26:08 am,
+            Platform: win32, 
+            CPU Model: AMD Ryzen 7 5800HS with Radeon Graphics        , 
+            Total Memory: 15.33407974243164 GB, 
+            Free Memory: 4.283672332763672 GB, 
+            Uptime: 12.14826388888889 hours
+            
+    Date: 21/1/2026, 11:26:13 am,
+            Platform: win32, 
+            CPU Model: AMD Ryzen 7 5800HS with Radeon Graphics        , 
+            Total Memory: 15.33407974243164 GB, 
+            Free Memory: 4.286224365234375 GB, 
+            Uptime: 12.149652777777778 hours
+            
+    Date: 21/1/2026, 11:26:18 am,
+            Platform: win32, 
+            CPU Model: AMD Ryzen 7 5800HS with Radeon Graphics        , 
+            Total Memory: 15.33407974243164 GB, 
+            Free Memory: 4.284614562988281 GB, 
+            Uptime: 12.151045833333333 hours
+            
+    Date: 21/1/2026, 11:26:23 am,
+            Platform: win32, 
+            CPU Model: AMD Ryzen 7 5800HS with Radeon Graphics        , 
+            Total Memory: 15.33407974243164 GB, 
+            Free Memory: 4.283317565917969 GB, 
+            Uptime: 12.152439166666667 hours
+            
+    Date: 21/1/2026, 11:26:28 am,
+            Platform: win32, 
+            CPU Model: AMD Ryzen 7 5800HS with Radeon Graphics        , 
+            Total Memory: 15.33407974243164 GB, 
+            Free Memory: 4.275348663330078 GB, 
+            Uptime: 12.153828055555556 hours
+            
+    Date: 21/1/2026, 11:26:33 am,
+            Platform: win32, 
+            CPU Model: AMD Ryzen 7 5800HS with Radeon Graphics        , 
+            Total Memory: 15.33407974243164 GB, 
+            Free Memory: 4.191883087158203 GB, 
+            Uptime: 12.155216944444446 hours
+            
+    Date: 21/1/2026, 11:26:38 am,
+            Platform: win32, 
+            CPU Model: AMD Ryzen 7 5800HS with Radeon Graphics        , 
+            Total Memory: 15.33407974243164 GB, 
+            Free Memory: 4.191867828369141 GB, 
+            Uptime: 12.15661 hours
+            
+    Date: 21/1/2026, 11:26:43 am,
+            Platform: win32, 
+            CPU Model: AMD Ryzen 7 5800HS with Radeon Graphics        , 
+            Total Memory: 15.33407974243164 GB, 
+            Free Memory: 4.190013885498047 GB, 
+            Uptime: 12.158003333333333 hours
+            
+    Date: 21/1/2026, 11:26:48 am,
+            Platform: win32, 
+            CPU Model: AMD Ryzen 7 5800HS with Radeon Graphics        , 
+            Total Memory: 15.33407974243164 GB, 
+            Free Memory: 4.190242767333984 GB, 
+            Uptime: 12.159392222222221 hours
+            
+    Date: 21/1/2026, 11:26:53 am,
+            Platform: win32, 
+            CPU Model: AMD Ryzen 7 5800HS with Radeon Graphics        , 
+            Total Memory: 15.33407974243164 GB, 
+            Free Memory: 4.209735870361328 GB, 
+            Uptime: 12.160785555555556 hours
+            
+    Date: 21/1/2026, 11:26:58 am,
+            Platform: win32, 
+            CPU Model: AMD Ryzen 7 5800HS with Radeon Graphics        , 
+            Total Memory: 15.33407974243164 GB, 
+            Free Memory: 4.218723297119141 GB, 
+            Uptime: 12.162174444444444 hours
+            
+    Date: 21/1/2026, 11:27:03 am,
+            Platform: win32, 
+            CPU Model: AMD Ryzen 7 5800HS with Radeon Graphics        , 
+            Total Memory: 15.33407974243164 GB, 
+            Free Memory: 4.225650787353516 GB, 
+            Uptime: 12.163567500000001 hours
+            
