@@ -1,0 +1,19 @@
+{
+  "name": "backend-dev",
+  "version": "1.0.0",
+  "description": "assignment",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shivamparihar1/Backend-Dev.git"
+  },
+  "author": "shivam parihar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shivamparihar1/Backend-Dev/issues"
+  },
+  "homepage": "https://github.com/shivamparihar1/Backend-Dev#readme"
+}
