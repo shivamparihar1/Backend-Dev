@@ -3,6 +3,7 @@ const express = require("express");
 const app = express();
 
 const PORT = 8000;
+app.use(express.json());
 
 const students = [
     { id: 1, name: "Alice", branch: "CSE" },
@@ -11,7 +12,7 @@ const students = [
 ];
 
 app.get("/", (req, res) => {
-   res.send("Welcome to Expressjs Backend!");
+    res.send("Welcome to Expressjs Backend!");
 });
 
 // app.get("/user", (req, res) => {
@@ -24,21 +25,34 @@ app.get("/students", (req, res) => {
 
 app.get("/students/search", (req ,res) => {
     const branch = req.query.branch;
-    const filteredstudents = students.filter(s => s.branch === branch);
-    res.json(filteredstudents);
-})
+    console.log("branch", branch);
+    if(!branch){
+        return res.json(students);
+    }
+    const foundStudents = students.filter(s => s.branch === branch);
+    res.json(foundStudents);
+});
 
 
 app.get("/students/:id", (req, res) => {
     const id = req.params.id;
-    //res.send(`You are requesting for user: ${id}`);
 
+    //res.send(`You are requesting for user: ${id}`);
     const  arrayIndex = students.findIndex(s=> s.id == id);
 
-    const data = students[arrayIndex];
-    res.json(data);
+    if(arrayIndex < 0){
+        return res.status(404).send("student not found");
+    }
+
+    const foundStudent = students[arrayIndex];
+    res.json(foundStudent);
     
 });
+app.post("/students/register", (req, res)=>{
+    const data = req.body;
+    students.push(data);
+    res.json(students);
+})
 
 
 
