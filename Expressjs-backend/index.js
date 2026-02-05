@@ -84,6 +84,19 @@ fs.readFile("students.json", "utf-8", (err, data) => {
 });
 });
 
+app.put("/students/:id", (req, res) => {
+    const userId = parseInt(req.params.id);
+    const foundIndex = students.findIndex(s => s.id === userId);
+    if(foundIndex ==-1){
+        return res.status(404).send ("student not found");
+
+
+    }
+    students[foundIndex] = {...students[foundIndex], ...req.body};
+    const result ={message: "student updated successfully", student: students};
+    return res.status(200).json(result);
+});
+
 
 
 
