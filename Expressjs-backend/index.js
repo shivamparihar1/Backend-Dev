@@ -1,105 +1,117 @@
 const express = require("express");
-const fs = require("fs"); 
+const fs = require("fs").promises;
 
 const app = express();
-
-const PORT = 8000;
 app.use(express.json());
 
-const students = [
-    { id: 1, name: "Alice", branch: "CSE" },
-    { id: 2, name: "Bob", branch: "ECE" },
-    { id: 3, name: "Charlie", branch: "MECH" },
-];
+const PORT = 8000;
 
+/* ---------------- Helper Functions ---------------- */
+
+const readStudentsFromFile = async () => {
+  const data = await fs.readFile("./Students.json", "utf-8");
+  return JSON.parse(data || "[]");
+};
+
+const writeStudentsToFile = async (records) => {
+  await fs.writeFile("./Students.json", JSON.stringify(records, null, 2));
+};
+
+/* ---------------- Routes ---------------- */
+
+// Home
 app.get("/", (req, res) => {
-    res.send("Welcome to Expressjs Backend!");
+  res.send("<h1>Welcome to Home Page</h1>");
 });
 
-// app.get("/user", (req, res) => {
-//     res.send("<h1>this is users page</h1>");
-// });
-
-app.get("/students", (req, res) => {
-    res.json(students);
+// Get All Students
+app.get("/students", async (req, res) => {
+  const students = await readStudentsFromFile();
+  res.status(200).json(students);
 });
 
-app.get("/students/search", (req ,res) => {
-    // const branch = req.query.branch;
-    // console.log("branch", branch);
-    // if(!branch){
-    //     return res.json(students);
-    // }
-    // const foundStudents = students.filter(s => s.branch === branch);
-    // res.json(foundStudents);
+// Get Student by ID
+app.get("/students/:id", async (req, res) => {
+  const userId = parseInt(req.params.id);
+  const students = await readStudentsFromFile();
+
+  const student = students.find((s) => s.id === userId);
+  if (!student) {
+    return res.status(404).json({ message: "Student not found" });
+  }
+
+  res.json(student);
 });
 
+// Add New Student
+app.post("/students/register", async (req, res) => {
+  const { name, branch } = req.body;
 
-app.get("/students/:id", (req, res) => {
-    // const id = req.params.id;
+  if (!name || !branch) {
+    return res.status(400).json({ message: "Name and branch required" });
+  }
 
-    //res.send(`You are requesting for user: ${id}`);
-    // const  arrayIndex = students.findIndex(s=> s.id == id);
+  const students = await readStudentsFromFile();
 
-    // if(arrayIndex < 0){
-    //     return res.status(404).send("student not found");
-    // }
+  const newStudent = {
+    id: students.length ? students[students.length - 1].id + 1 : 1,
+    name,
+    branch,
+  };
 
-    // const foundStudent = students[arrayIndex];
-    // res.json(foundStudent);
-    
-});
-app.post("/students/register", (req, res)=>{
-    const {name, branch} = req.body;
-    if(!name || !branch){
-        return res.status(400).send("Invalid student data");
-    }
+  students.push(newStudent);
+  await writeStudentsToFile(students);
 
-// read the file first
-fs.readFile("students.json", "utf-8", (err, data) => {
-    if(err){
-        return res.status(500).send("could not read students file");
-    }
-    // parse existing data or start with an empty array
-    const students = JSON.parse(data || "[]");
-    console.log("<<<<<>>>>>",typeof students);
-
-     const newStudent = {
-        id: students.length > 0 ? students[students.length - 1].id + 1 : 1,
-        name,
-        branch,
-     };
-    students.push(newStudent);
-
-    //write the whole array back to the file (overwriting)
-    fs.writeFile("./students.json", JSON.stringify(students, null, 2), (err) => {
-        if(err){
-            return res.status(500).send("error writing to students file");
-            
-        }
-        // only send response after successfully writing to the file
-        return res.status(201).json({message: "Student registered successfully", student: newStudent });
-        res.json(students);
-    });
-});
+  res.status(201).json({
+    message: "Student registered successfully",
+    student: newStudent,
+  });
 });
 
-app.put("/students/:id", (req, res) => {
-    const userId = parseInt(req.params.id);
-    const foundIndex = students.findIndex(s => s.id === userId);
-    if(foundIndex ==-1){
-        return res.status(404).send ("student not found");
+// Update Student
+app.put("/students/:id", async (req, res) => {
+  const userId = parseInt(req.params.id);
+  const students = await readStudentsFromFile();
 
+  const foundIndex = students.findIndex((s) => s.id === userId);
+  if (foundIndex === -1) {
+    return res.status(404).json({ message: "Student not found" });
+  }
 
-    }
-    students[foundIndex] = {...students[foundIndex], ...req.body};
-    const result ={message: "student updated successfully", student: students};
-    return res.status(200).json(result);
+  students[foundIndex] = {
+    ...students[foundIndex],
+    ...req.body,
+  };
+
+  await writeStudentsToFile(students);
+
+  res.json({
+    message: "Student updated successfully",
+    student: students[foundIndex],
+  });
 });
 
+// Delete Student
+app.delete("/students/:id", async (req, res) => {
+  const userId = parseInt(req.params.id);
+  const students = await readStudentsFromFile();
 
+  const foundIndex = students.findIndex((s) => s.id === userId);
+  if (foundIndex === -1) {
+    return res.status(404).json({ message: "Student not found" });
+  }
 
+  const deletedStudent = students.splice(foundIndex, 1);
+  await writeStudentsToFile(students);
+
+  res.json({
+    message: "Student deleted successfully",
+    student: deletedStudent[0],
+  });
+});
+
+/* ---------------- Start Server ---------------- */
 
 app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
+  console.log(`Server is running on port ${PORT}`);
 });
