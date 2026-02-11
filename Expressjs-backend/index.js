@@ -6,6 +6,7 @@ app.use(express.json());
 
 const PORT = 8000;
 
+
 /* ---------------- Helper Functions ---------------- */
 
 const readStudentsFromFile = async () => {
@@ -29,6 +30,7 @@ app.get("/students", async (req, res) => {
   const students = await readStudentsFromFile();
   res.status(200).json(students);
 });
+
 
 // Get Student by ID
 app.get("/students/:id", async (req, res) => {
@@ -104,7 +106,7 @@ app.delete("/students/:id", async (req, res) => {
   const deletedStudent = students.splice(foundIndex, 1);
   await writeStudentsToFile(students);
 
-  res.json({
+  res.json({ 
     message: "Student deleted successfully",
     student: deletedStudent[0],
   });
