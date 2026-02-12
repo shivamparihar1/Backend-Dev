@@ -6,6 +6,11 @@ app.set("view engine", "ejs");
 
 
 app.use(express.urlencoded({extended: true}));
+const students = [
+    {name: "Alice", branch: "CSE"},
+    {name: "Bob", branch: "Civil"},
+    {name: "Charlie", branch: "Mechanical"}
+];
 
 
 // const readStudentsFromFile = async () => {
@@ -19,15 +24,17 @@ app.use(express.urlencoded({extended: true}));
 
 
 
-app.get("/",async (req, res) => {
+app.get("/",(req, res) => {
     // const fileData = await readStudentsFromFile();
     // console.log(fileData);
-    res.render("form");
+    res.render("form", { allStudents: students });
 });
 
-app.post("/students/register", async (req, res) => {
-    console.log(req.body);
-    return res.send("Student registered successfully");
+app.post("/students/register", (req, res) => {
+    console.log("form data:", req.body);
+    students.push(req.body);
+    res.redirect("/");
+    
 });
 
 app.listen(8000, () => {
