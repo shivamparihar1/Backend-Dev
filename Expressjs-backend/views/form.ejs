@@ -1,57 +1,60 @@
 <!DOCTYPE html>
 <html>
-
 <body>
-    <h1>Add new Student</h1>
-    
-    <form action="/Students/register" method="post">
-    <input type="text" name="name" placeholder="Enter name">
 
-    <select name="branch" >
+<h1>Add new Student</h1>
+
+<form action="/students/register" method="POST">
+    <input type="text" name="name" placeholder="Enter Name" required>
+
+    <select name="branch">
         <option value="CSE">CSE</option>
-        <option value="EC">EC</option>
-        <option value="IT">IT</option>
-        <option value="ML">ML</option>
-        <option value="AI">AI</option>
+        <option value="Civil">Civil</option>
+        <option value="Mechanical">Mechanical</option> 
+        <option value="AI ML">AI ML</option> 
     </select>
+
     <button type="submit">Submit</button>
-    </form>
-    <hr>
-    <h3>current student</h3>
+</form>
 
-     <!-- <ul>
-        <% allStudents.forEach(s => { %>
-            <li><%=s.id %> <%=s.name %> <%=s.branch %></li>
-        <% }) %>
-    </ul> -->
+<hr>
 
+<h2>Total Students: <%= total %></h2>
 
-    <!-- table form  -->
+<h3>Filter By Branch</h3>
+<a href="/">All</a> |
+<a href="/?branch=CSE">CSE</a> |
+<a href="/?branch=Civil">Civil</a> |
+<a href="/?branch=Mechanical">Mechanical</a> |
+<a href="/?branch=AI ML">AI ML</a>
 
-    <% if (allStudents && allStudents.length > 0) { %>
-    <table border="1" cellpadding="8" cellspacing="0">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Branch</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% allStudents.forEach(s => { %>
-                <tr>
-                    <td><%= s.id %></td>
-                    <td><%= s.name %></td>
-                    <td><%= s.branch %></td>
-                </tr>
-            <% }) %>
-        </tbody>
-    </table>
+<hr>
+
+<h3>Current Students</h3>
+
+<% if(allStudents.length === 0){ %>
+    <h2>No students registered</h2>
 <% } else { %>
-    <h3>No students registered</h3>
+
+<table border="1" cellpadding="10">
+    <tr>
+        <th>Name</th>
+        <th>Branch</th>
+        <th>Action</th>
+    </tr>
+
+    <% allStudents.forEach(s => { %>
+        <tr>
+            <td><%= s.name %></td>
+            <td><%= s.branch %></td>
+            <td>
+                <a href="/students/delete/<%= s.id %>">Delete</a>
+            </td>
+        </tr>
+    <% }) %>
+</table>
+
 <% } %>
 
-
-     
 </body>
 </html>
