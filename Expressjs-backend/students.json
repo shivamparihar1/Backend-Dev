@@ -5,27 +5,13 @@
     "branch": "ECE"
   },
   {
-    "name": "Shivam",
+    "id": 2,
+    "name": "ankit ",
     "branch": "CSE"
   },
   {
-    "name": "ritesh",
+    "id": 3,
+    "name": "ankit ",
     "branch": "CSE"
-  },
-  {
-    "name": "Lalit",
-    "branch": "MSC"
-  },
-  {
-    "name": "",
-    "branch": ""
-  },
-  {
-    "name": "",
-    "branch": ""
-  },
-  {
-    "name": "",
-    "branch": ""
   }
 ]

@@ -1,23 +1,57 @@
 <!DOCTYPE html>
 <html>
+
 <body>
     <h1>Add new Student</h1>
-    <form action="/students/register" method="POST">
-        <input type="text" name="name" placeholder=" Enter Name">
-        <select name="branch">
-            <option value="CSE">CSE</option>
-            <option value="Civil">Civil</option>
-            <option value="Mechanical">Mechanical</option>  
-        </select>
-        <button type="submit">Submit</button>
-    </form>
+    
+    <form action="/Students/register" method="post">
+    <input type="text" name="name" placeholder="Enter name">
 
+    <select name="branch" >
+        <option value="CSE">CSE</option>
+        <option value="EC">EC</option>
+        <option value="IT">IT</option>
+        <option value="ML">ML</option>
+        <option value="AI">AI</option>
+    </select>
+    <button type="submit">Submit</button>
+    </form>
     <hr>
-    <h3>Current Students</h3>
-    <ul>
-       <% allStudents.forEach(s => { %>
-        <li>Name: <%= s.name %> - Branch: <%= s.branch %></li>
-       <% }); %>
-    </ul>
+    <h3>current student</h3>
+
+     <!-- <ul>
+        <% allStudents.forEach(s => { %>
+            <li><%=s.id %> <%=s.name %> <%=s.branch %></li>
+        <% }) %>
+    </ul> -->
+
+
+    <!-- table form  -->
+
+    <% if (allStudents && allStudents.length > 0) { %>
+    <table border="1" cellpadding="8" cellspacing="0">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Branch</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% allStudents.forEach(s => { %>
+                <tr>
+                    <td><%= s.id %></td>
+                    <td><%= s.name %></td>
+                    <td><%= s.branch %></td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+<% } else { %>
+    <h3>No students registered</h3>
+<% } %>
+
+
+     
 </body>
 </html>
