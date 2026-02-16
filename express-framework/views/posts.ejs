@@ -1,0 +1,10 @@
+<h1>All Blog Posts</h1>
+<a href="/posts/new">Create New Post</a>
+
+<ul>
+<% posts.forEach(p=>{ %>
+   <li>
+     <a href="/posts/<%= p.id %>"><%= p.title %></a>
+   </li>
+<% }) %>
+</ul>
