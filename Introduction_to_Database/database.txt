@@ -1,0 +1,69 @@
+Que.1 Explain the key differences between SQL and NoSQL databases with examples.
+
+SQL Databases:
+
+1.Store data in structured tables with fixed schemas
+2.Use standard SQL for querying
+3.Scale vertically (bigger machine)
+4.Full ACID compliance
+5.Examples: MySQL, PostgreSQL
+
+
+NoSQL Databases:
+
+1.Store data in flexible formats (documents, key-value, graph)
+2.Use database-specific APIs for querying
+3.Scale horizontally (more machines)
+4.Eventual consistency model
+5.Examples: MongoDB
+
+
+Que.2 What does the CAP theorem state, and why can’t a distributed system guarantee all three
+properties?
+
+CAP theorem states a distributed system can only guarantee two out of three properties:
+
+Consistency — Every read gets the most recent write
+Availability — Every request gets a response
+Partition Tolerance — System works even if network fails between nodes
+
+Why not all three?
+Network partitions are unavoidable in distributed systems. When a partition occurs, you must choose between returning stale data (Availability) or refusing to respond (Consistency). You simply cannot do both at the same time.
+
+
+Que.3 Describe three scenarios where MongoDB would be preferred over a relational database.
+
+1. Content Management Systems — Blog posts and articles have varying structures. MongoDB's flexible schema          handles different fields per document without migrations.
+
+2. Real-Time Event Logging — IoT data or user activity logs are high-volume and unstructured. MongoDB ingests them quickly without a rigid schema.
+
+3. E-Commerce Product Catalogs — A laptop and a shirt have completely different attributes. MongoDB stores each product with only its relevant fields cleanly.
+
+
+Que.4 Why does MongoDB use BSON internally instead of storing documents as JSON?
+
+1. Binary Format —  BSON is binary-encoded, faster to parse than text-based JSON.
+2. Richer Data Types —  Supports Date, ObjectId, Int64, Decimal128, and BinData which JSON lacks.
+3. Length Prefixes —  BSON stores field lengths, so MongoDB can skip fields without reading the entire document.
+4. Faster Serialization —  Encoding and decoding between app and database is much faster than parsing JSON strings.
+
+
+Que.5 Write MongoDB queries to find all students with GPA above 3.5 and enrolled in “CS101”.
+
+Find students with GPA above 3.5:
+db.students.find({ gpa: { $gt: 3.5 } })
+
+Find students enrolled in CS101:
+db.students.find({ enrolledCourses: "CS101" })
+
+Find students with GPA above 3.5 AND enrolled in CS101:
+db.students.find({
+  gpa: { $gt: 3.5 },
+  enrolledCourses: "CS101"
+})
+
+Same query sorted by GPA descending:
+db.students.find({
+  gpa: { $gt: 3.5 },
+  enrolledCourses: "CS101"
+}).sort({ gpa: -1 })

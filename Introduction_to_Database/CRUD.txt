@@ -1,0 +1,87 @@
+Que.1 What are the advantages of using Mongoose over the native MongoDB driver?
+
+1. Schema Validation — Enforces structure before saving to the database
+2. Data Casting — Auto-converts types (e.g., "25" becomes 25 for a Number field)
+3. Middleware/Hooks — Run logic before or after operations like save or find
+4. Virtuals — Computed fields not stored in DB (e.g., fullName from firstName + lastName)
+5. Population — Replaces stored ObjectIds with full referenced documents automatically
+
+
+Que.2 Explain the difference between findOneAndUpdate() and updateOne().
+
+updateOne():
+
+1. Only updates the document, returns metadata (matchedCount, modifiedCount)
+2. Does not return the actual document
+3. Lighter and faster, use when you don't need the document back
+
+ User.updateOne({ email: "john@example.com" }, { $set: { isActive: true } });
+ returns → { matchedCount: 1, modifiedCount: 1 }
+
+findOneAndUpdate():
+
+1. Updates and returns the actual document
+2. Use { new: true } to get the updated version
+3. Slightly heavier, use when you need the document back (e.g., API responses)
+
+User.findOneAndUpdate(
+  { email: "john@example.com" },
+  { $set: { isActive: true } },
+  { new: true }
+);
+returns → the full updated user document
+
+
+Que.3 What is the purpose of middleware in Mongoose?
+
+Middleware (hooks) are functions that run automatically before (pre) or after (post) a database operation.
+
+1. Pre-processing Data — Hash passwords before saving a user document
+2. Post-processing / Side Effects — Send welcome email after a new user is created
+3. Cascading Deletes — Auto-delete related documents when a parent is removed
+4. Input Sanitization — Normalize emails to lowercase or trim strings before saving
+
+eg:- 
+userSchema.pre("save", async function (next) {
+  if (!this.isModified("password")) return next();
+  this.password = await bcrypt.hash(this.password, 10);
+  next();
+});
+
+
+Que.4 How do you implement pagination in Mongoose?
+
+const page = parseInt(req.query.page) || 1;
+const limit = parseInt(req.query.limit) || 10;
+const skip = (page - 1) * limit;
+
+const users = await User.find()
+  .sort({ createdAt: -1 })
+  .skip(skip)
+  .limit(limit);
+
+1. page — current page number from query param
+2. limit — number of documents per page
+3. skip — calculated as (page - 1) * limit to skip previous pages
+4. .sort() — orders results before paginating
+5. For large datasets, use cursor-based pagination with _id: { $gt: lastSeenId } instead of skip() for better performance
+
+Que.5 When should you use embedding vs referencing in MongoDB schema design?
+
+Use Embedding when:
+
+1. Data is always accessed together with the parent
+2. Relationship is one-to-few (e.g., post with a few comments)
+3. Embedded data doesn't change frequently
+4. You want faster reads with a single query
+
+{ title: "Post", comments: [{ user: "Alice", text: "Nice!" }] }
+
+Use Referencing when:
+
+1. Data is large or updated frequently and independently
+2. Relationship is one-to-many or many-to-many
+3. Same data is shared across multiple documents
+4. Embedding would cause the document to grow beyond MongoDB's 16MB limit
+
+{ _id: ObjectId("o1"), userId: ObjectId("u1"), product: "Laptop" }
